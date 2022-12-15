@@ -98,7 +98,7 @@ In the Elixir cell below, create a keyword list of your favourite super hero. In
 Enter your solution below.
 
 ```elixir
-
+[spider: "peter"]
 ```
 
 ## Keyword List Operators
