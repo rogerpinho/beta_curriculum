@@ -112,7 +112,13 @@ end
 Enter your solution below.
 
 ```elixir
+temperature = 15
 
+if temperature > 10 do
+  :hot
+else
+  :cold
+end
 ```
 
 ## Clear Control Flow
@@ -257,7 +263,7 @@ We can provide any number of cases. Cases use pattern matching to decide which r
 Return each value from `1` to `5` by changing the `condition` variable below.
 
 ```elixir
-condition = nil
+condition = 123
 
 case condition do
   :red -> 1
@@ -330,7 +336,7 @@ To provide a default case for the `case` statement, you can use a variable, whic
 ```elixir
 case "no match" do
   "sunnny" -> "wear a t-shirt"
-  anything -> "wear clothing"
+  _anything -> "wear clothing"
 end
 ```
 
@@ -357,7 +363,7 @@ end
 Return each result from `1` to `5` by changing the `condition` variable below.
 
 ```elixir
-condition = nil
+condition = %{kay1: 1, key2: "value"}
 
 case condition do
   [1, 2, 3] -> 1
@@ -416,10 +422,11 @@ This means that order does matter. Here, even though the integer is above `5`, i
 ```elixir
 value = 10
 
-cond do
-  is_integer(value) -> "value is an integer"
-  value > 5 -> "value is above 5"
-end
+result =
+  cond do
+    is_integer(value) -> "value is an integer"
+    value > 5 -> "value is above 5"
+  end
 ```
 
 Generally, we want more specific conditions to be higher in priority than less specific conditions.
@@ -496,7 +503,16 @@ end
 </details>
 
 ```elixir
+grade = 99
 
+cond do
+  grade >= 85 ->
+    "A"
+
+  grade >= 70 and grade < 85 ->
+    "B"
+    grade
+end
 ```
 
 ## Unless
@@ -550,7 +566,11 @@ In the Elixir cell below
 * Create an `unless` statement. which returns `"awake"` unless `tired`.
 
 ```elixir
+tired = false
 
+unless tired do
+  "awake"
+end
 ```
 
 ## Commit Your Progress
