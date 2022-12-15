@@ -155,7 +155,12 @@ family_tree = arthur
 Enter your solution below.
 
 ```elixir
-
+me = %{
+  name: "Roger",
+  age: 20,
+  status: :child,
+  parents: [%{name: "Jose", age: 40, status: :parent}]
+}
 ```
 
 ## Commit Your Progress

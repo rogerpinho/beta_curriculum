@@ -45,7 +45,7 @@ shopping_cart = shopping_cart ++ ["banana", "banana", "banana"]
 
 Enter your solution below.
 
-<!-- livebook:{"attrs":{"assertions":"list = [] ++ [\"grapes\", \"walnuts\", \"apples\"]\nlist = list ++ [\"blueberries\", \"chocolate\", \"pizza\"]\nlist = list -- [\"grapes\", \"walnuts\"]\nlist = list ++ [\"banana\", \"banana\", \"banana\"]\n\nassert is_list(shopping_cart), \"Ensure shopping_list is still a list.\"\n\nassert shopping_cart == list","attempts":3,"code":"shopping_cart = [1]","solution":"","title":"Shopping Cart"},"kind":"Elixir.TestedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":{"assertions":"list = [] ++ [\"grapes\", \"walnuts\", \"apples\"]\nlist = list ++ [\"blueberries\", \"chocolate\", \"pizza\"]\nlist = list -- [\"grapes\", \"walnuts\"]\nlist = list ++ [\"banana\", \"banana\", \"banana\"]\n\nassert is_list(shopping_cart), \"Ensure shopping_list is still a list.\"\n\nassert shopping_cart == list","attempts":3,"code":"shopping_cart = [1]","solution":"","title":"Shopping Cart"},"chunks":null,"kind":"Elixir.TestedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 ExUnit.start(auto_run: false)
@@ -146,7 +146,7 @@ shopping_cart = shopping_cart ++ [candies: 5]
 
 </details>
 
-<!-- livebook:{"attrs":{"assertions":"list = [] ++ [milk: 1, eggs: 12]\nlist = list ++ [bars_of_butter: 2, candies: 10]\nlist = list -- [bars_of_butter: 2]\nlist = list -- [candies: 10]\nlist = list ++ [candies: 5]\n\nassert is_list(shopping_cart), \"Ensure shopping_list is still a list.\"\n\nassert shopping_cart == list","attempts":3,"code":"shopping_cart = []","solution":"","title":"Shopping Cart With Quantities"},"kind":"Elixir.TestedCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":{"assertions":"list = [] ++ [milk: 1, eggs: 12]\nlist = list ++ [bars_of_butter: 2, candies: 10]\nlist = list -- [bars_of_butter: 2]\nlist = list -- [candies: 10]\nlist = list ++ [candies: 5]\n\nassert is_list(shopping_cart), \"Ensure shopping_list is still a list.\"\n\nassert shopping_cart == list","attempts":3,"code":"shopping_cart = []","solution":"","title":"Shopping Cart With Quantities"},"chunks":null,"kind":"Elixir.TestedCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 ExUnit.start(auto_run: false)
