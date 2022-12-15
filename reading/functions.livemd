@@ -56,7 +56,7 @@ Now, let's create our first function. At first, it's going to do nothing.
 A function must have an output. We can return `nil` for now.
 
 ```elixir
-double = fn -> nil end
+double = fn x -> x * 2 end
 ```
 
 You may see some weird-looking output like `#Function<45.65746770/0 in :erl_eval.expr/5>`.
@@ -113,7 +113,7 @@ Our `double` function doesn't do much at this point, but let's see the **output*
 We use the `.()` syntax in Elixir to get the function's output. We often say we are **executing** or **calling** a function.
 
 ```elixir
-double.()
+double.(2)
 ```
 
 `double` should return `nil` because that's all we've told it to do so far. However, we want
@@ -191,7 +191,7 @@ Under the hood, when the function runs, the parameter is bound to the argument's
 
 Let's break down how a function executes step by step in the following slideshow.
 
-<!-- livebook:{"attrs":{"source":"frames =     [\n      \"\n  First, we define the `double` function and call it.\n  ```elixir\n  double = fn number -> number * 2 end\n  double.(3)\n  ```\n  \",\n      \"\n  The `double` function executes in place of the `double.(call)` with `number` bound to `3`.\n  ```elixir\n  double = fn number -> number * 2 end\n  fn 3 -> 3 * 2 end\n  ```\n  \",\n      \"\n  The function evaluates the function body between the `->` and the `end`\n  ```elixir\n  double = fn number -> number * 2 end\n  3 * 2\n  ```\n  \",\n      \"\n  `3` * `2` is `6`, so the function call returns `6`.\n  ```elixir\n  double = fn number -> number * 2 end\n  6\n  ```\n  \"\n    ]\n\nSmartAnimation.new(0..Enum.count(frames) - 1, fn i ->\n    Enum.at(frames, i) |> Kino.Markdown.new()\nend)","title":"Function Flow"},"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+<!-- livebook:{"attrs":{"source":"frames =     [\n      \"\n  First, we define the `double` function and call it.\n  ```elixir\n  double = fn number -> number * 2 end\n  double.(3)\n  ```\n  \",\n      \"\n  The `double` function executes in place of the `double.(call)` with `number` bound to `3`.\n  ```elixir\n  double = fn number -> number * 2 end\n  fn 3 -> 3 * 2 end\n  ```\n  \",\n      \"\n  The function evaluates the function body between the `->` and the `end`\n  ```elixir\n  double = fn number -> number * 2 end\n  3 * 2\n  ```\n  \",\n      \"\n  `3` * `2` is `6`, so the function call returns `6`.\n  ```elixir\n  double = fn number -> number * 2 end\n  6\n  ```\n  \"\n    ]\n\nSmartAnimation.new(0..Enum.count(frames) - 1, fn i ->\n    Enum.at(frames, i) |> Kino.Markdown.new()\nend)","title":"Function Flow"},"chunks":null,"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
 
 ````elixir
 frames = [
@@ -277,7 +277,8 @@ is_even? = fn int -> rem(int, 2) == 0 end
 Enter your solution below.
 
 ```elixir
-
+is_even? = fn x -> rem(x, 2) == 1 end
+is_even?.(2)
 ```
 
 ## Multi-Parameter Functions
@@ -343,7 +344,11 @@ calculate_force = fn mass, acceleration -> mass * acceleration end
 Enter your solution below.
 
 ```elixir
+calculate_force = fn x, y ->
+  x * y
+end
 
+calculate_force.(10, 10)
 ```
 
 ## Shorthand Syntax
@@ -392,7 +397,8 @@ subtract = &(&1 - &2)
 Enter your solution below.
 
 ```elixir
-
+subtract = &(&1 - &2)
+subtract.(1, 1)
 ```
 
 ### Your Turn
@@ -418,7 +424,8 @@ multiply_three = &(&1 * &2 * &3)
 Enter your solution below.
 
 ```elixir
-
+multiply_three = &(&1 * &2 * &3)
+multiply_three.(2, 2, 2)
 ```
 
 ## First-class Functions
@@ -436,7 +443,7 @@ We'll see something like `#Function<42.3316493/1 in :erl_eval.expr/6>` if we try
 Functions are just data as far as our programs are concerned. We can work with them like we would work with any data structure.
 
 ```elixir
-[my_function | _tail] = [fn int -> int * 2 end, 2, 3, 4]
+[my_function | tail] = [fn int -> int * 2 end, 2, 3, 4]
 
 my_function.(10)
 ```
@@ -456,6 +463,7 @@ For example, we can create a `call_with_2/1` higher order function, that accepts
 
 ```elixir
 call_with_2 = fn callback -> callback.(2) end
+call_with_2.(&(&1 * 10))
 ```
 
 We can then use the `call_with_2/1` higher order function with an `add_three/1` callback function. This calls `add_three/1` with `2` to return `5`.
@@ -506,7 +514,9 @@ call_with_10_and_20 = fn callback -> callback.(10, 20) end
 Enter your solution below.
 
 ```elixir
-call_with_20 = nil
+add = &(&1 + &2)
+call_with_20 = & &1.(10, 10)
+call_with_20.(add)
 ```
 
 ## Pipe Operator
@@ -619,7 +629,11 @@ multiply = fn int1, int2 -> int1 * int2 end
 Enter your solution below.
 
 ```elixir
-
+number =
+  10
+  |> add.(10)
+  |> subtract.(5)
+  |> multiply_three.(2, 3)
 ```
 
 ## Commit Your Progress
