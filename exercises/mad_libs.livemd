@@ -39,7 +39,11 @@ blank3 = "code"
 Enter your solution below.
 
 ```elixir
+first = "person"
+second = "coffee"
+third = "code"
 
+text = "A programmer is a #{first} that turns #{second} into #{third}"
 ```
 
 ## String Interpolation Madlib
