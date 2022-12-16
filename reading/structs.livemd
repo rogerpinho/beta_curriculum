@@ -32,7 +32,7 @@ Let's say you're building a family tree but this time, you want to make sure tha
 
 ```elixir
 defmodule Person do
-  defstruct [:name]
+  defstruct [:name, :age]
 end
 ```
 
@@ -55,7 +55,7 @@ You'll notice that the struct has a name key, but no value since we didn't provi
 Here's how you can pass in a name.
 
 ```elixir
-%Person{name: "Peter Parker"}
+%Person{name: "Roger", age: 20}
 ```
 
 So, why not just use a map? We could easily define a similar map and it looks exactly the same.
@@ -82,7 +82,7 @@ We also guarantee that other keys don't exist. For example, if we don't define `
 it can't be set. This helps ensure we use the data structure as intended.
 
 ```elixir
-%Person{age: 20}
+%Person{birth: 20}
 ```
 
 ### Multiple Keys
@@ -187,7 +187,9 @@ end
 Enter your solution below.
 
 ```elixir
-
+defmodule Coordinate do
+  defstruct x: 0, y: 0
+end
 ```
 
 ## Module Functions
@@ -262,25 +264,35 @@ end
 Enter your solution below.
 
 ```elixir
+defmodule Hero do
+  defstruct [:name, :secret_identity]
 
+  def greeting(%Hero{name: name}) do
+    IO.puts("Hello, #{name}")
+  end
+
+  def reveal(%__MODULE__{secret_identity: secret_identity}) do
+    IO.puts("Hi, I'm #{secret_identity}")
+  end
+end
 ```
 
 When finished create bind a variable `hero` to an instance of your `Hero` struct.
 
 ```elixir
-
+hero = %Hero{name: "Spider Man", secret_identity: "Peter Parker"}
 ```
 
 Use the `Hero.greeting/1` function on `hero` to ensure it works correctly.
 
 ```elixir
-
+Hero.greeting(hero)
 ```
 
 Use the `Hero.reveal/1` function on `hero` to ensure it works correctly.
 
 ```elixir
-
+Hero.reveal(hero)
 ```
 
 ## Updating Structs
@@ -296,6 +308,7 @@ end
 ```elixir
 initial = %MyUpdatableStruct{key: "value"}
 updated = %{initial | key: "new value"}
+new_hero = %Hero{hero | name: "Black Spider Man"}
 ```
 
 ## Further Reading
