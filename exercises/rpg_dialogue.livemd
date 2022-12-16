@@ -55,6 +55,9 @@ Then implement the `Character` functions to generate dialogue according to the d
 
 ```elixir
 defmodule Character do
+  @enforce_keys [:name]
+  defstruct [:name, :class, :weapon]
+
   @moduledoc """
   Character
 
@@ -62,6 +65,7 @@ defmodule Character do
   """
 
   @doc """
+
   Introduce the character by name.
 
   ## Examples
@@ -70,9 +74,10 @@ defmodule Character do
     "My name is Gimli."
 
     iex> Character.introduce(%Character{name: "Aragorn"})
-     "My name is Aragorn."
+    "My name is Aragorn."
   """
-  def introduce(character) do
+  def introduce(%Character{name: name}) do
+    "My name is #{name}."
   end
 
   @doc """
@@ -86,7 +91,8 @@ defmodule Character do
     iex> Character.attack(%Character{name: "Aragorn", weapon: "sword"})
     "I attack with my sword!"
   """
-  def attack(character) do
+  def attack(%Character{weapon: weapon}) do
+    "I attack with my #{weapon}!"
   end
 
   @doc """
@@ -100,7 +106,8 @@ defmodule Character do
     iex> Character.class(%Character{name: "Aragorn", class: "ranger"})
     "I am a ranger."
   """
-  def class(character) do
+  def class(%Character{class: class}) do
+    "I am a #{class}."
   end
 
   @doc """
@@ -114,7 +121,8 @@ defmodule Character do
     iex> Character.war_cry(%Character{name: "Aragorn", class: "ranger"})
     "My name is Aragorn and I am a ranger!"
   """
-  def war_cry(character) do
+  def war_cry(%Character{name: name, class: class}) do
+    "My name is #{name} and I am a #{class}!"
   end
 
   @doc """
@@ -129,6 +137,7 @@ defmodule Character do
     "My name is Aragorn and I have defeated the warrior Gimli!"
   """
   def defeat(character1, character2) do
+    "My name is #{character1.name} and I have defeated the #{character2.class} #{character2.name}!"
   end
 end
 ```
@@ -175,7 +184,11 @@ Character.introduce(aragorn)
 Enter your solution below.
 
 ```elixir
+aragon = %Character{name: "Aragorn", class: "ranger", weapon: "sword"}
+gandalf = %Character{name: "Gandalf", class: "wizard", weapon: "staff"}
+gimli = %Character{name: "Gimli", class: "warrior", weapon: "axe"}
 
+Character.introduce(gandalf)
 ```
 
 ### Bonus: Handle `nil` Fields.
